@@ -22,6 +22,3 @@ function makeTask(newTaskDescription) {
   newTaskDescription.value = '';
 }
 
-
-
-
