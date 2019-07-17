@@ -1,51 +1,24 @@
-document.addEventListener("DOMContentLoaded", function(e) {
-  const newForm = document.querySelector('#create-task-form');
-  newForm.addEventListener("submit", function(e) {
+document.addEventListener("DOMContentLoaded", () => {
+  const taskForm = document.querySelector('#create-task-form')
+  document.addEventListener("submit", function(e) {
     e.preventDefault();
-    const newTaskText = document.querySelector('#new-task-description');
-    console.log(e);
-    makeTask(newTaskText.value);
-    newTaskText.value = '';
-  });
-
-  const dateDueLabel = document.createElement('label')
-  dateDueLabel.innerText = "Date Due:"
-
-  const dateDueInput = document.createElement('input')
-  dateDueInput.type = "text"
-
-  newForm.insertBefore(dateDueInput, newForm.childNodes[0])
-  newForm.insertBefore(dateDueLabel, newForm.childNodes[0])
-
+    const newTaskDescription = document.querySelector('#new-task-description');
+    makeTask(newTaskDescription)
+  })
+  
+  const userNameLabel = document.createElement('label');
+  userNameLabel.innerText = "User:"
+  const userNameField = document.createElement('input');
+  userNameField.innerText = 'text';
+  taskForm.insertBefore(userNameLabel, taskForm.childNodes[0]);
+  taskForm.insertBefore(userNameField, taskForm.childNodes[1]);
 });
 
-function makeTask(newTaskText) {
-  const ul = document.getElementById('tasks')
-  const li = document.createElement('li')
-  li.id = newTaskText;
-  li.innerText = newTaskText;
-  ul.appendChild(li);
-  const button = document.createElement('button');
-  li.appendChild(button);
-  button.innerText = 'Philip was here'
-  button.addEventListener("click", function(e) {
-    ul.removeChild(li);
-  })
-};
+function makeTask(newTaskDescription) {
+  const newTaskItem = document.createElement('li');
+  const listTasks = document.querySelector('#list');
+  listTasks.appendChild(newTaskItem);
+  newTaskItem.innerText = newTaskDescription.value;
+  newTaskDescription.value = '';
+}
 
-
-//
-//   function newItem() {
-//     // create item space, a list item
-//
-//   }
-//
-//   var ul = document.createElement('ul')
-//
-// for (let i = 0; i < 3; i++) {
-//   let li = document.createElement('li')
-//   li.innerHTML = (i + 1).toString()
-//   ul.appendChild(li)
-// }
-//
-// element.appendChild(ul)
